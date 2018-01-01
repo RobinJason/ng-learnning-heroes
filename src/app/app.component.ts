@@ -12,7 +12,10 @@ export class Hero {
     <h1>{{title}}</h1>
     <h2>{{hero.name}} details!</h2>
     <div><label>id: </label>{{hero.id}}</div>
-    <div><label>name: </label>{{hero.name}}</div>
+    <div>
+      <label>name: </label>
+      <input [(ngModal)]="hero.name" placeholder="name">
+    </div>
   `
 })
 /*添加属性,title属性用来表示应用的名字，hero属性用来表示叫做windstorm的英雄*/
