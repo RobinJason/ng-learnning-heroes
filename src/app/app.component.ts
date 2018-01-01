@@ -73,26 +73,37 @@ const HEROES: Hero[] = [
   template: `
     <h2>My Heroes</h2>
     <ul class="heroes">
-      <li *ngFor="let hero of heroes">
+      <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
         <!-- each hero goes here -->
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
     </ul>
     <h1>{{title}}</h1>
-    <h2>{{hero.name}} details!</h2>
-    <div><label>id: </label>{{hero.id}}</div>
-    <div>
-      <label>name: </label>
-      <input [(ngModel)]="hero.name" placeholder="name">
+    <div *ngIf="selectedHero">
+      <h2>{{selectedHero.name}} details!</h2>
+      <div><label>id: </label>{{selectedHero.id}}</div>
+      <div>
+        <label>name: </label>
+        <input [(ngModel)]="selectedHero.name" placeholder="name">
+      </div>
     </div>
-  `
+  `/*
+  在未执行click事件前，hero对象还未传到select方法中
+  ，selectedHero属性还没有获取到hero对象，因此需要隐藏
+  selectedHero为空的英雄详情，当点击完成后，hero对象传入，
+  selectedHero就能获取到hero对象保存的字面量对象中的属性值了
+  */
 })
 /*添加属性,title属性用来表示应用的名字，hero属性用来表示叫做windstorm的英雄*/
 export class AppComponent {
   title = 'Tour of Heroes';
-  hero: Hero = {
+  /*hero: Hero = {
     id: 1,
     name: 'Windstorm'
-  };
+  };*/
   heroes = HEROES; /*创建的公共属性,暴露英雄以供绑定*/
+  selectedHero: Hero; /*定义详情中的属性对象*/
+  onSelect(hero: Hero): void { /*click绑定的函数，执行时把对象传入赋值*/
+    this.selectedHero = hero;
+  }
 }
