@@ -13,6 +13,7 @@ const HEROES: Hero[] = [
   {id: 19, name: 'Magma'},
   {id: 20, name: 'Tornado'}
 ];
+/*英雄列表视图*/
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -67,6 +68,7 @@ const HEROES: Hero[] = [
   }
   `],
   template: `
+    <h1>{{title}}</h1>
     <h2>My Heroes</h2>
     <ul class="heroes">
       <li [class.selected]="hero === selectedHero"
@@ -75,8 +77,7 @@ const HEROES: Hero[] = [
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
     </ul>
-    <h1>{{title}}</h1>
-
+    <app-hero-detail [hero]="selectedHero"></app-hero-detail>
   `/*
   在未执行click事件前，hero对象还未传到select方法中
   ，selectedHero属性还没有获取到hero对象，因此需要隐藏
