@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-/*Hero类*/
-export class Hero {
-  id: number;
-  name: string;
-}
+import { Hero } from './hero';
 /*模拟英雄的数据*/
 const HEROES: Hero[] = [
   {id: 11, name: 'Mr. Nice'},
@@ -80,14 +76,7 @@ const HEROES: Hero[] = [
       </li>
     </ul>
     <h1>{{title}}</h1>
-    <div *ngIf="selectedHero">
-      <h2>{{selectedHero.name}} details!</h2>
-      <div><label>id: </label>{{selectedHero.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedHero.name" placeholder="name">
-      </div>
-    </div>
+
   `/*
   在未执行click事件前，hero对象还未传到select方法中
   ，selectedHero属性还没有获取到hero对象，因此需要隐藏
